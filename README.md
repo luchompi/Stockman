@@ -1,0 +1,1 @@
+Stockman es un sistema de gestion de inventarios, desarrollado para la empresa Variedades Pineapple de Santa Marta.
