@@ -5,7 +5,7 @@ import { successMessage } from "./messages";
 const Navbar = ({ dateTime }) => {
   const isLogged = store((state) => state.isLogged);
   const logout = store((state) => state.logout);
-
+  const userData = store((state) => state.userData);
   const cerrarSesion = () => {
     successMessage("Hecho", "Sesión cerrada correctamente");
     logout();
@@ -60,7 +60,7 @@ const Navbar = ({ dateTime }) => {
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    Sesión iniciada
+                    Sesión iniciada como {userData?.username}
                   </button>
                   <ul
                     className="dropdown-menu"

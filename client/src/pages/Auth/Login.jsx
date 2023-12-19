@@ -2,13 +2,14 @@ import CardLayout from "../../layouts/CardLayout.jsx";
 import Fingerprint from "../../assets/json/Fingerprint.json";
 import { Redirector } from "../../middleware/sesion.middleware.jsx";
 import { useState } from "react";
-import { login } from "../../apis/auth.apis.js";
+import { login, obtenerDatosUsuario } from "../../apis/auth.apis.js";
 import { successMessage, errorMessage } from "../../components/messages.js";
 import { useSesionStore } from "../../stores/sesion.store.js";
 const LoginForm = () => {
   const [data, setData] = useState({ username: "", password: "" });
   const setTokens = useSesionStore((state) => state.setTokens);
   const setLoading = useSesionStore((state) => state.setLoading);
+  const setUserData = useSesionStore((state) => state.setUserData);
   const handleChange = (e) => {
     setData({
       ...data,
@@ -23,6 +24,11 @@ const LoginForm = () => {
       .then((response) => {
         setTokens(response.data);
         successMessage("Hecho", "Inicio de sesión exitoso");
+      })
+      .then(() => {
+        obtenerDatosUsuario().then((response) => {
+          setUserData(response.data);
+        });
       })
       .catch((error) => {
         errorMessage(error.response.data);
