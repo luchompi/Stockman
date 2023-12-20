@@ -12,8 +12,7 @@ const CardLayout = ({
   cardComponent,
   cardIcon,
 }) => {
-  const { isLoading } = useSesionStore.getState();
-  console.log(isLoading);
+  const { isLoading } = useSesionStore((state) => state);
   return (
     <>
       {isLoading ? (
