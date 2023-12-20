@@ -37,3 +37,48 @@ export const errorMessage = (data) => {
         showConfirmButton: false
     })
 }
+
+
+export const confirmMessage = (title, message, confirmButtonText, cancelButtonText, callback) => {
+    return Swal.fire({
+        title: title,
+        text: message,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: confirmButtonText,
+        cancelButtonText: cancelButtonText,
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false
+    }).then((result) => {
+        return result.isConfirmed ? callback() : false
+    })
+}
+
+export const infoMessage = (title, message) => {
+    return Swal.fire({
+        title: title,
+        text: message,
+        icon: 'info',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false
+    })
+}
+
+export const questionMessageForPreventLogout = (title, message) => {
+    return Swal.fire({
+        title: title,
+        text: message,
+        icon: 'warning',
+        confirmButtonText: "Sí",
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false,
+        timer: 8000,
+        timerProgressBar: true,
+    }).then((result) => {
+        return result.isConfirmed
+    })
+}
+

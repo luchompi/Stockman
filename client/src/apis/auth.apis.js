@@ -13,3 +13,7 @@ export const login = (data) => {
   return baseApi.post(`jwt/create`, data);
 };
 
+export const refreshTokens = () => {
+  const { RAT } = store.getState();
+  return baseApi.post(`jwt/refresh/`, { refresh: RAT })
+}

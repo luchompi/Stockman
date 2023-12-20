@@ -5,10 +5,15 @@ export const useSesionStore = create((set) => ({
     RAT: null,
     isLogged: false,
     userData: [],
+    timer: 0,
+    sesionWasStarted: false,
     isLoading: false,
-    setTokens: (tokens) => set(() => ({ PAT: tokens.access, RAT: tokens.refresh, isLogged: true })),
+    setTokens: (tokens) => set(() => ({ PAT: tokens.access, RAT: tokens.refresh, isLogged: true, sesionWasStarted: true })),
     setUserData: (data) => set(() => ({ userData: data })),
     setLoading: (value) => set(() => ({ isLoading: value })),
-    logout: () => set(() => ({ PAT: null, RAT: null, isLogged: false, userData: [] }))
+    increment: () => set((state) => ({ timer: state.timer + 1 })),
+    refreshPAT: () => set((token) => ({ PAT: token, timer: 0 })),
+    resetTimer: () => set(() => ({ timer: 1 })),
+    logout: () => set(() => ({ PAT: null, RAT: null, isLogged: false, userData: [], timer: 0 }))
 }))
 
